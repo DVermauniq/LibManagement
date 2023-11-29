@@ -11,16 +11,19 @@ public class LibrarianMain {
 	private static LibrarianDaoImp librarianDaoImp;
 	
 	public static void main(String[] args) {
-AdminDaoImp adminDaoImp = new AdminDaoImp();
+		LibrarianDaoImp librarianDaoImp = new LibrarianDaoImp();
 		
 		while(true) {
-			System.out.println("1. View all Librarian");
-			System.out.println("2. Add new Librarian");
-			System.out.println("3. View all Members");
-			System.err.println("4. View all BookRecords");
-			System.out.println("5. View all IssueRecords");
-			System.out.println("6. View all BalanceRecords");
-			System.out.println("7. Exit");
+			System.out.println("1. View Personal Information");
+			System.out.println("2. Add new Member");
+			System.out.println("3. Add new Book");
+			System.out.println("4. View all Members Registered");
+			System.err.println("5. View all Books Registered");
+			System.out.println("6. View Issue Request");
+			System.out.println("7. Update a Member Record");
+			System.out.println("8. View personal IssueRecords");
+			System.out.println("9. View personal BalanceRecords");
+			System.out.println("10. Exit");
 			System.out.println("Enter your choice:");
 			
 			int choice = sc.nextInt();
@@ -30,30 +33,33 @@ AdminDaoImp adminDaoImp = new AdminDaoImp();
 			case 1:
 				viewAllLibrarian();
 				break;
-			
 			case 2:
-				addLibrarian();
+				addMember();
 				break;
 			case 3:
-				viewAllMembers();
+				addBook();
 				break;
-				
 			case 4:
-				viewAllBookRecords();
-				break;
-				
+				viewAllMembers();
+				break;				
 			case 5:
-				viewAllIssueRecords();
-				break;
-				
+				viewAllBooks();
+				break;				
 			case 6:
-				viewAllBalanceRecords();
+				viewAllIssueRequest();
 				break;
-			
 			case 7:
+				updateMember();
+				break;				
+			case 8:
+				viewAllIssueRecords();
+				break;				
+			case 9:
+				viewAllBalanceRecords();
+				break;			
+			case 10:
 				System.out.println("Exiting the progrram");
-				System.exit(0);
-				
+				System.exit(0);				
 				default:
 					System.out.println("Invalid choice. please try again.");
 			}
