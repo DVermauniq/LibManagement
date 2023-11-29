@@ -1,5 +1,7 @@
 package com.railworld.dao;
+import java.util.List;
 
+import com.railworld.model.Member;
 public class MemberDaoImp extends AdminDaoImp{
 	
 	public void createMembers() {
@@ -10,19 +12,11 @@ public class MemberDaoImp extends AdminDaoImp{
 		
 	}
 
-	public List<Members> Memdata(){
+	public List<Member> Memdata(){
 		
 	}
 	
-	public List<Books> Booklist(){
-		
-	}
-	
-	public List<Balance> balRecord(){
-		
-	}
-	
-	public List<Balance> issueRecord(){
+	public void deleteMem() {
 		
 	}
 	

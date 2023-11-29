@@ -1,25 +1,8 @@
 package com.railworld.dao;
-
+import java.util.*;
+import com.railworld.model.*;
 public class AdminDaoImp {
 	
-	public List<Librarian> libData(){
-		
-	}
 	
-	public List<Members> memData(){
-		
-	}
-	
-	public List<Books> bookList(){
-		
-	}
-	
-	public List<Balance> balRecord(){
-		
-	}
-	
-	public List<Balance> issueRecord(){
-		
-	}
 
 }
