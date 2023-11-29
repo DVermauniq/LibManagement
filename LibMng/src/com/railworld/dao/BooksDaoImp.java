@@ -1,20 +1,17 @@
 package com.railworld.dao;
 
-public class BooksDaoImp extends AdminDaoImp{
+public class BooksDaoImp {
 	
-	public void createBook() {
+	public void createIssue() {
 		
 	}
 	
-	public void deleteBook() {
+	public void updateIssue() {
+		
+	}
+	public void addBalance() {
 		
 	}
 	
-	public List<Balance> issueRecord(){
-		
-	}
 	
-	public void issueBook() {
-		
-	}
 }
