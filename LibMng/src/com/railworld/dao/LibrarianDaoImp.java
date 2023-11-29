@@ -2,9 +2,9 @@ package com.railworld.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 
 import com.railworld.connection.JDBC;
 import com.railworld.model.Librarian;
@@ -20,7 +20,18 @@ private Connection connection;
 		}
 	}
 	
-	public void createLibrarian() {
+	public void createLibrarian(Librarian Lib) {
+		try(Connection connection=JDBC.getConnection();
+				Statement s1=connection.createStatement();)
+		    {
+			String query = "CREATE TABLE Guard"+"(gId int auto_increament,"+ "guardName varchar(255),"+"status varchar(255),"+"companyId int"+"Primary key(gId)"+"FOREIGN KEY(companyId) REFERENCES Company(companyId))";
+			s1.executeUpdate(query);
+			System.out.println("Table Created");
+			
+		}
+		    catch(Exception e)
+		    {
+		    	e.printStackTrace();}		    
 		
 	}
 	public List<Librarian> getLib(){
@@ -30,7 +41,7 @@ private Connection connection;
 				ResultSet resultSet = statement.executeQuery()) {
 			while (resultSet.next()) {
 				Librarian lib1 = new Librarian(resultSet.getInt("lId"), resultSet.getString("name"), resultSet.getInt("workdays"));
-				Librarian.add(lib1);
+				e1.add(lib1);
 			}
 		}
 				
@@ -61,8 +72,8 @@ private Connection connection;
 	}
 	public void deleteLib(int lId) {
 		try {
-			String query ="Delete from Guard where gId=?";
-			String q= "UPDATE Res SET gId= null WHERE gId="+lId;
+			String query ="Delete from Guard where lId=?";
+			String q= "UPDATE Res SET lId= null WHERE lId="+lId;
 			PreparedStatement s2= connection.prepareStatement(q);
 			try (PreparedStatement stmt=connection.prepareStatement(query)){
 				s2.setInt(1, lId);
