@@ -1,14 +1,24 @@
 package com.railworld.dao;
 
 public class AdminDaoImp {
-	public void createAdmin() {
-		
 	
-	}
-	public void createLibrarian() {
+	public List<Librarian> libData(){
 		
 	}
-	public List<Librarian> Libdata(){
+	
+	public List<Members> memData(){
+		
+	}
+	
+	public List<Books> bookList(){
+		
+	}
+	
+	public List<Balance> balRecord(){
+		
+	}
+	
+	public List<Balance> issueRecord(){
 		
 	}
 
