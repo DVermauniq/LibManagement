@@ -22,11 +22,11 @@ private Connection connection;
 	
 	public void addLibrarian(Librarian Lib) {
 		try {
-			String query="INSERT INTO Guard(guardName,status,companyId) VALUES(?, ?, ?)";
+			String query="INSERT INTO Librarian(Name,lId,workdays) VALUES(?, ?, ?)";
 			try(PreparedStatement stmt=connection.prepareStatement(query)){
 				
-				stmt.setInt(2, Lib.getlId());
 				stmt.setString(1,Lib.getName());
+				stmt.setInt(2, Lib.getlId());
 				stmt.setInt(3, Lib.getWorkdays());
 				stmt.executeUpdate();
 				
@@ -39,7 +39,7 @@ private Connection connection;
 		
 	}
 	public List<Librarian> getlib(){
-		String query="SELECT * from Guard";
+		String query="SELECT * from librarian";
 		List<Librarian> e1 = new ArrayList<>();
 		try(PreparedStatement statement=connection.prepareStatement(query);
 				ResultSet resultSet = statement.executeQuery()) {
@@ -57,13 +57,13 @@ private Connection connection;
 	}
 	public void updateLib(Librarian Librarian) {
 		try {
-			String query = "UPDATE Company SET Name = ? WHERE companyId = ?";
+			String query = "UPDATE Librarian SET WorkDays = ? WHERE lId = ?";
 			try (PreparedStatement s1 = connection.prepareStatement(query)){
-				s1.setString(1, Librarian.getName());
+				s1.setLong(1, Librarian.getWorkdays());
 				s1.setInt(2, Librarian.getlId());
 				s1.executeUpdate();
 				
-				System.out.println("UPdateCompanyName..........");
+				System.out.println("UPdateLibrarianRecord..........");
 				
 //				stmt.close();
 				
@@ -75,8 +75,8 @@ private Connection connection;
 	}
 	public void deleteLib(int lId) {
 		try {
-			String query ="Delete from Guard where lId=?";
-			String q= "UPDATE Res SET lId= null WHERE lId="+lId;
+			String query ="Delete from Librarian where lId=?";
+			String q= "UPDATE issued SET isId= null WHERE lId="+lId;
 			PreparedStatement s2= connection.prepareStatement(q);
 			try (PreparedStatement stmt=connection.prepareStatement(query)){
 				s2.setInt(1, lId);
