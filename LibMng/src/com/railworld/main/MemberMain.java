@@ -12,7 +12,7 @@ public class MemberMain {
 	private static MemberDaoImp memberDaoImp;
 	
 	public static void main(String[] args) {
-		MemberDaoImp memberDaoImp = new MemberDaoImp();
+		
 		
 		while(true) {
 			System.out.println("1. View Personal Information");
@@ -40,7 +40,7 @@ public class MemberMain {
 				viewAllBalanceRecords();
 				break;
 			case 5:
-				updateBookStatus;
+				updateBookStatus();
 				break;
 			case 6:
 				System.out.println("Exiting the progrram");
@@ -51,6 +51,21 @@ public class MemberMain {
 		}
 	}
 	
+	private static void updateBookStatus() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void viewAllBalanceRecords() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void viewAllIssueRecords() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private static void viewAllMembers(){
 		
 		 List<Member> member;

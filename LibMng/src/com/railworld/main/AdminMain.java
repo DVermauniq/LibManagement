@@ -4,11 +4,18 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.railworld.dao.*;
+import com.railworld.model.Books;
+import com.railworld.model.Librarian;
+import com.railworld.model.Member;
+import com.railworld.model.issue;
 
 public class AdminMain {
 	
 	private static Scanner sc = new Scanner(System.in);
 	private static AdminDaoImp adminDaoImp;
+	private static LibrarianDaoImp ldi;
+	private static MemberDaoImp mdi ;
+	private static BooksDaoImp bdi ;
 	
 	public static void main(String[] args) {
 		AdminDaoImp adminDaoImp = new AdminDaoImp();
@@ -74,47 +81,37 @@ public class AdminMain {
 	
 	private static void viewAllMembers() {
 		
-		List<Members> members = members.getAllMembers();
+		List<Member> members = mdi.Memdata();
 		
 		System.out.println("Members List");
 		
-		for(Members members1: members) {
-			System.out.println(members);
+		for(Member members1: members) {
+			System.out.println(members1);
 		}
 	}
 		
 	private static void viewAllBookRecords() {
 			
-			List<BookRecords> bookRecords = bookRecords.getAllBookRecords();
+			List<Books> bookRecords = bookRecords.getAllBookRecords();
 			
 			System.out.println("Book Record List");
 			
-			for(BookRecords bookRecords1: bookRecords) {
+			for(Books bookRecords1: bookRecords) {
 				System.out.println(bookRecords);
 			}
 	}
 	
 	private static void viewAllIssueRecords() {
 		
-		List<IssueRecords> issueRecords = issueRecords.getAllIssueRecords();
+		List<issue> issueRecords = bdi.getIssue();
 		
 		System.out.println("Book Record List");
 		
-		for(IssueRecords issueRecords1: issueRecords) {
+		for(issue issueRecords1: issueRecords) {
 			System.out.println(issueRecords);
 		}
 	}
 	
-	private static void viewAllBalanceRecords() {
-		
-		List<BalanceRecords> balanceRecords = balanceRecords.getAllBalanceRecords();
-		
-		System.out.println("Book Record List");
-		
-		for(BalanceRecords balanceRecords1: balanceRecords) {
-			System.out.println(balanceRecords);
-		}
-	}
 	
 	private static void addLibrarian() {
 		
