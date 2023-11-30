@@ -2,7 +2,7 @@ package com.railworld.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,21 +20,25 @@ private Connection connection;
 		}
 	}
 	
-	public void createLibrarian(Librarian Lib) {
-		try(Connection connection=JDBC.getConnection();
-				Statement s1=connection.createStatement();)
-		    {
-			String query = "CREATE TABLE Guard"+"(gId int auto_increament,"+ "guardName varchar(255),"+"status varchar(255),"+"companyId int"+"Primary key(gId)"+"FOREIGN KEY(companyId) REFERENCES Company(companyId))";
-			s1.executeUpdate(query);
-			System.out.println("Table Created");
-			
-		}
-		    catch(Exception e)
-		    {
-		    	e.printStackTrace();}		    
+	public void addLibrarian(Librarian Lib) {
+		try {
+			String query="INSERT INTO Guard(guardName,status,companyId) VALUES(?, ?, ?)";
+			try(PreparedStatement stmt=connection.prepareStatement(query)){
+				
+				stmt.setInt(2, Lib.getlId());
+				stmt.setString(1,Lib.getName());
+				stmt.setInt(3, Lib.getWorkdays());
+				stmt.executeUpdate();
+				
+			}
+		}catch(Exception e)
+			{
+		
+				e.printStackTrace();
+			}		    
 		
 	}
-	public List<Librarian> getLib(){
+	public List<Librarian> getlib(){
 		String query="SELECT * from Guard";
 		List<Librarian> e1 = new ArrayList<>();
 		try(PreparedStatement statement=connection.prepareStatement(query);
@@ -45,8 +49,7 @@ private Connection connection;
 			}
 		}
 				
-		catch(Exception e)
-		{
+		catch(Exception e)	{
 			e.printStackTrace();
 		}
 		return e1;
