@@ -2,7 +2,7 @@ package com.railworld.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,18 +20,23 @@ public class MemberDaoImp extends AdminDaoImp{
 		}
 	}
 	
-	public void createMembers(Member mem) {
-		try(Connection connection=JDBC.getConnection();
-				Statement s1=connection.createStatement();)
-		    {
-			String query = "CREATE TABLE Guard"+"(gId int auto_increament,"+ "guardName varchar(255),"+"status varchar(255),"+"companyId int"+"Primary key(gId)"+"FOREIGN KEY(companyId) REFERENCES Company(companyId))";
-			s1.executeUpdate(query);
-			System.out.println("Table Created");
+	public void addMembers(Member mem) {
+		try {
+			String query="INSERT INTO Guard(guardName,status,companyId) VALUES(?, ?, ?)";
+			try(PreparedStatement stmt=connection.prepareStatement(query)){
+				
+				stmt.setInt(1, mem.getmId());
+				stmt.setString(2,mem.getName());
+				stmt.setLong(3, mem.getContact());
+				stmt.executeUpdate();
+				
+			}
+		}catch(Exception e)
+			{
+		
+				e.printStackTrace();
+			}
 			
-		}
-		    catch(Exception e)
-		    {
-		    	e.printStackTrace();}
 		
 	}
 
