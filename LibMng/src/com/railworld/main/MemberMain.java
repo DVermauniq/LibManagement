@@ -12,7 +12,7 @@ public class MemberMain {
 	private static MemberDaoImp memberDaoImp;
 	
 	public static void main(String[] args) {
-		MemberDaoImp memberDaoImp = new MemberDaoImp();
+		
 		
 		while(true) {
 			System.out.println("1. View Personal Information");
@@ -40,7 +40,9 @@ public class MemberMain {
 				viewAllBalanceRecords();
 				break;
 			case 5:
-				addIssue();
+
+				updateBookStatus();
+
 				break;
 			case 6:
 				System.out.println("Exiting the progrram");
@@ -50,6 +52,8 @@ public class MemberMain {
 			}
 		}
 	}
+	
+
 	
 	private static void viewAllMembers(){
 		
@@ -97,7 +101,7 @@ public class MemberMain {
 		}
 	}
 	
-	private static void addIssue() {
+	private static void updateBookStatus() {
 		
 		System.out.print("Enter issue Id");
 		int isId = sc.nextInt();
