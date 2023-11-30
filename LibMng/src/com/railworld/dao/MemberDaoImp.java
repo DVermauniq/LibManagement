@@ -24,9 +24,9 @@ public class MemberDaoImp extends AdminDaoImp{
 		try(Connection connection=JDBC.getConnection();
 				Statement s1=connection.createStatement();)
 		    {
-			String query = "CREATE TABLE Guard"+"(gId int auto_increament,"+ "guardName varchar(255),"+"status varchar(255),"+"companyId int"+"Primary key(gId)"+"FOREIGN KEY(companyId) REFERENCES Company(companyId))";
+			String query = "INSERT INTO MEMBERS VALUES"+"(MId int auto_increament,"+ "NAME varchar(32),"+"contact int)";
 			s1.executeUpdate(query);
-			System.out.println("Table Created");
+			System.out.println("Member record added");
 			
 		}
 		    catch(Exception e)
@@ -36,7 +36,7 @@ public class MemberDaoImp extends AdminDaoImp{
 	}
 
 	public List<Member> Memdata(){
-		String query="SELECT * from Guard";
+		String query="SELECT * from Members";
 		List<Member> m1 = new ArrayList<>();
 		try(PreparedStatement statement=connection.prepareStatement(query);
 				ResultSet resultSet = statement.executeQuery()) {
@@ -56,12 +56,13 @@ public class MemberDaoImp extends AdminDaoImp{
 	
 	public void deleteMem(int mId) {
 		try {
-			String query ="Delete from Guard where lId=?";
-			String q= "UPDATE Res SET lId= null WHERE lId="+mId;
+			String query ="Delete from Members where lId=?";
+			String q= "UPDATE issued SET isId= null WHERE mId="+mId;
+			
 			PreparedStatement s2= connection.prepareStatement(q);
 			try (PreparedStatement stmt=connection.prepareStatement(query)){
-				s2.setInt(1, mId);
-				s2.executeUpdate();
+				stmt.setInt(1, mId);
+				stmt.executeUpdate();
 				s2.executeUpdate();
 			}
 		}
@@ -73,13 +74,14 @@ public class MemberDaoImp extends AdminDaoImp{
 	}
 	public void updateMem(Member mem) {
 		try {
-			String query = "UPDATE Company SET Name = ? WHERE companyId = ?";
+			String query = "UPDATE Member SET Name = ? , Contact = ? WHERE mId = ?";
 			try (PreparedStatement s1 = connection.prepareStatement(query)){
 				s1.setString(1, mem.getName());
-				s1.setInt(2, mem.getmId());
+				s1.setLong(2, mem.getContact());
+				s1.setInt(3, mem.getmId());
 				s1.executeUpdate();
 				
-				System.out.println("UPdateCompanyName..........");
+				System.out.println("UPdateMemberRecord..........");
 				
 //				stmt.close();
 				
