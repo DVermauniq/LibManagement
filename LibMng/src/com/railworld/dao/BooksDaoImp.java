@@ -28,7 +28,7 @@ public class BooksDaoImp {
 	
 	public void addIssue(issue iss,Books book,Librarian lib,Member mem) {
 		try {
-			String query="INSERT INTO Guard(guardName,status,companyId) VALUES(?, ?, ?)";
+			String query="INSERT INTO Issued(isId,isDate,subDate,mId,bId,lId) VALUES(?, ?, ?, ?, ?, ?)";
 			try(PreparedStatement stmt=connection.prepareStatement(query)){
 				stmt.setInt(1,iss.getIsId());
 				stmt.setString(2, iss.getIsDate());
@@ -49,18 +49,16 @@ public class BooksDaoImp {
 	
 	public void updateIssue(issue iss,Books book,Librarian lib,Member mem) {
 		try {
-			String query = "UPDATE Company SET Name = ? WHERE companyId = ?";
+			String query = "UPDATE Issued SET subDate = ? , getlId = ? WHERE isId = ?";
 			try (PreparedStatement s1 = connection.prepareStatement(query)){
 				
-				s1.setInt(1,iss.getIsId());
-				s1.setString(2, iss.getIsDate());
-				s1.setString(3, iss.getSubDate());
-				s1.setInt(4,mem.getmId());
-				s1.setInt(5,book.getbId());
-				s1.setInt(6,lib.getlId());
+				
+				s1.setString(1, iss.getSubDate());
+				s1.setInt(2, lib.getlId());
+				s1.setInt(3,iss.getIsId());
 				s1.executeUpdate();
 				
-				System.out.println("UPdateCompanyName..........");
+				System.out.println("UpdateComplete..........");
 				
 //				stmt.close();
 				
@@ -73,7 +71,7 @@ public class BooksDaoImp {
 	
 	
 	public List<Books> getBook(){
-		String query="SELECT * from Guard";
+		String query="SELECT * from Book";
 		List<Books> b1 = new ArrayList<>();
 		try(PreparedStatement statement=connection.prepareStatement(query);
 				ResultSet resultSet = statement.executeQuery()) {
@@ -92,7 +90,7 @@ public class BooksDaoImp {
 	}
 	public void addBook(Books book) {
 		try {
-			String query="INSERT INTO Guard(guardName,status,companyId) VALUES(?, ?, ?)";
+			String query="INSERT INTO Book(bId,Name,Author,Copies) VALUES(?, ?, ?, ?)";
 			try(PreparedStatement stmt=connection.prepareStatement(query)){
 				
 				stmt.setInt(1, book.getbId());
