@@ -23,7 +23,7 @@ public class MemberDaoImp extends AdminDaoImp{
 
 	public void addMembers(Member mem) {
 		try {
-			String query="INSERT INTO Guard(guardName,status,companyId) VALUES(?, ?, ?)";
+			String query="INSERT INTO Members(name,contact,mId) VALUES(?, ?, ?)";
 			try(PreparedStatement stmt=connection.prepareStatement(query)){
 				
 				stmt.setInt(1, mem.getmId());
@@ -81,11 +81,10 @@ public class MemberDaoImp extends AdminDaoImp{
 	}
 	public void updateMem(Member mem) {
 		try {
-			String query = "UPDATE Member SET Name = ? , Contact = ? WHERE mId = ?";
+			String query = "UPDATE Member SET Contact = ? WHERE mId = ?";
 			try (PreparedStatement s1 = connection.prepareStatement(query)){
-				s1.setString(1, mem.getName());
-				s1.setLong(2, mem.getContact());
-				s1.setInt(3, mem.getmId());
+				s1.setLong(1, mem.getContact());
+				s1.setInt(2, mem.getmId());
 				s1.executeUpdate();
 				
 				System.out.println("UPdateMemberRecord..........");
