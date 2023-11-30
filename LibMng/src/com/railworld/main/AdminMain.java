@@ -4,18 +4,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.railworld.dao.*;
-import com.railworld.model.Books;
 import com.railworld.model.Librarian;
-import com.railworld.model.Member;
-import com.railworld.model.issue;
 
 public class AdminMain {
 	
 	private static Scanner sc = new Scanner(System.in);
 	private static AdminDaoImp adminDaoImp;
-	private static LibrarianDaoImp ldi;
-	private static MemberDaoImp mdi ;
-	private static BooksDaoImp bdi ;
 	
 	public static void main(String[] args) {
 		AdminDaoImp adminDaoImp = new AdminDaoImp();
@@ -81,37 +75,47 @@ public class AdminMain {
 	
 	private static void viewAllMembers() {
 		
-		List<Member> members = mdi.Memdata();
+		List<Members> members = members.getAllMembers();
 		
 		System.out.println("Members List");
 		
-		for(Member members1: members) {
-			System.out.println(members1);
+		for(Members members1: members) {
+			System.out.println(members);
 		}
 	}
 		
 	private static void viewAllBookRecords() {
 			
-			List<Books> bookRecords = bookRecords.getAllBookRecords();
+			List<BookRecords> bookRecords = bookRecords.getAllBookRecords();
 			
 			System.out.println("Book Record List");
 			
-			for(Books bookRecords1: bookRecords) {
+			for(BookRecords bookRecords1: bookRecords) {
 				System.out.println(bookRecords);
 			}
 	}
 	
 	private static void viewAllIssueRecords() {
 		
-		List<issue> issueRecords = bdi.getIssue();
+		List<IssueRecords> issueRecords = issueRecords.getAllIssueRecords();
 		
 		System.out.println("Book Record List");
 		
-		for(issue issueRecords1: issueRecords) {
+		for(IssueRecords issueRecords1: issueRecords) {
 			System.out.println(issueRecords);
 		}
 	}
 	
+	private static void viewAllBalanceRecords() {
+		
+		List<BalanceRecords> balanceRecords = balanceRecords.getAllBalanceRecords();
+		
+		System.out.println("Book Record List");
+		
+		for(BalanceRecords balanceRecords1: balanceRecords) {
+			System.out.println(balanceRecords);
+		}
+	}
 	
 	private static void addLibrarian() {
 		
@@ -122,10 +126,10 @@ public class AdminMain {
 		System.out.println("Enter id to be assigned");
 		int compId= sc.nextInt();
 		Librarian librarian = new Librarian();
-		librarian.setLibrarianName(name);
-		librarian.setWorkDays(workDays);
-		librarian.setCompanyId(compId);
-		librarianService.addLibrarian(librarian);
+		librarian.setName(name);
+		librarian.setWorkdays(workDays);
+		librarian.setlId(compId);
+		LibrarianDaoImp.addLibrarian(librarian);
 		System.out.println("Updated successfully!");
 	}
 }
