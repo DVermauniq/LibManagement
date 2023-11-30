@@ -4,32 +4,26 @@ import java.sql.*;
 import java.sql.DriverManager;
 
 public class JDBC {
-	private static String url = "jdbc:mysql://localhost:3306/ libManage";
-    private static String user = "root";
+	private static String url = "jdbc:mysql://localhost:3306/libManage";
+    private static String username = "root";
     private static String password = "root";
     private static Connection con;
 
 
-    static{
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-
-        try {
-            con =DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static Connection getConnection() {
-        return con;
-    }
+    public static Connection getConnection(){
+    	try {
+    		if(con==null) {
+    			
+    			Class.forName("com.mysql.cj.jdbc.Driver");
+				con= DriverManager.getConnection(url, username, password);
+				
+			} 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return con;
+	}
 	
 
 }

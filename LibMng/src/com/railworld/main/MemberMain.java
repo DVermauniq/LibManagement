@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.railworld.dao.*;
+import com.railworld.model.*;
 
 public class MemberMain {
 	
@@ -47,6 +48,30 @@ public class MemberMain {
 				default:
 					System.out.println("Invalid choice. please try again.");
 			}
+		}
+	}
+	
+	private static void viewAllMembers(){
+		
+		 List<Member> member;
+			member = memberDaoImp.Memdata();
+
+		
+		System.out.println("Member List:");
+		for (Member m : member) {
+			System.out.println(m);
+		}
+	}
+	
+	private static void viewAllBook(){
+		
+		 List<Book> book;
+			book = BooksDaoImp.Bookdata();
+
+		
+		System.out.println("Member List:");
+		for (Member m : member) {
+			System.out.println(m);
 		}
 	}
 }

@@ -66,7 +66,7 @@ public class AdminMain {
 		
 		System.out.println("Librarian List");
 		
-		for(librarian librarian1: librarian) {
+		for(Librarian librarian1: librarian) {
 			System.out.println(librarian);
 		}
 		
@@ -81,6 +81,7 @@ public class AdminMain {
 		for(Members members1: members) {
 			System.out.println(members);
 		}
+	}
 		
 	private static void viewAllBookRecords() {
 			
@@ -89,9 +90,46 @@ public class AdminMain {
 			System.out.println("Book Record List");
 			
 			for(BookRecords bookRecords1: bookRecords) {
-				System.out.println(members);
+				System.out.println(bookRecords);
 			}
-
+	}
+	
+	private static void viewAllIssueRecords() {
 		
+		List<IssueRecords> issueRecords = issueRecords.getAllIssueRecords();
+		
+		System.out.println("Book Record List");
+		
+		for(IssueRecords issueRecords1: issueRecords) {
+			System.out.println(issueRecords);
+		}
+	}
+	
+	private static void viewAllBalanceRecords() {
+		
+		List<BalanceRecords> balanceRecords = balanceRecords.getAllBalanceRecords();
+		
+		System.out.println("Book Record List");
+		
+		for(BalanceRecords balanceRecords1: balanceRecords) {
+			System.out.println(balanceRecords);
+		}
+	}
+	
+	private static void addLibrarian() {
+		
+		System.out.print("Enter Librarian name:");
+		String name = sc.nextLine();
+		System.out.print("Enter Workdays(e.g., 12345 for someone working all five workdays):");
+		int workDays = sc.nextInt();
+		System.out.println("Enter id to be assigned");
+		int compId= sc.nextInt();
+		Librarian librarian = new Librarian();
+		librarian.setLibrarianName(name);
+		librarian.setWorkDays(workDays);
+		librarian.setCompanyId(compId);
+		librarianService.addLibrarian(librarian);
+		System.out.println("Updated successfully!");
 	}
 }
+	
