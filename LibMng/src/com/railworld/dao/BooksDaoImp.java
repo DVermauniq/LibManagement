@@ -108,6 +108,28 @@ public class BooksDaoImp {
 		
 	}
 
+
+	public List<issue> getIssue() {
+		String query="SELECT * from Book";
+		List<issue> b1 = new ArrayList<>();
+		try(PreparedStatement statement=connection.prepareStatement(query);
+				ResultSet resultSet = statement.executeQuery()) {
+			while (resultSet.next()) {
+				issue mem1 = new issue(resultSet.getInt("IsId"), resultSet.getString("IsDate"), resultSet.getString("Subdate"));
+				b1.add(mem1);
+			}
+		}
+				
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return b1;
+		
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }
