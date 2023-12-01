@@ -1,7 +1,6 @@
 package com.railworld.service;
 
 
-import java.security.Guard;
 import java.util.List;
 
 import com.railworld.dao.MemberDaoImp;
@@ -19,9 +18,9 @@ public class MemberService {
 		return mdi.Memdata();
 		
 	}
-	public void createGuard(Guard guard)
+	public void addMem(Member mem)
 	{
-		mdi.createGuard(guard);
+		mdi.addMembers(mem);
 		
 	}
 	public void addMembers(Member mem)
@@ -32,7 +31,7 @@ public class MemberService {
 	{
 		mdi.updateMem(mem);
 	}
-	public void deleteGuard(int gId)
+	public void deleteMem(int gId)
 	{
 		mdi.deleteMem(gId);
 	}

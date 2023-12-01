@@ -8,6 +8,7 @@ import com.railworld.dao.MemberDaoImp;
 import com.railworld.model.Books;
 import com.railworld.model.Member;
 import com.railworld.model.issue;
+import com.railworld.service.BooksService;
 import com.railworld.service.MemberService;
 
 public class LibrarianMain {
@@ -15,11 +16,13 @@ public class LibrarianMain {
 	private static Scanner sc = new Scanner(System.in);
 	
 	private static MemberService mdi;
-	private static BooksDaoImp bdi;
+	private static BooksService bdi;
 
 	public static void main(String[] args) {
 		MemberDaoImp mem=new MemberDaoImp();
 		 mdi=new MemberService(mem);
+		 BooksDaoImp bk =new BooksDaoImp();
+		 bdi=new BooksService(bk);
 
 		while (true) {
 
@@ -130,7 +133,7 @@ public class LibrarianMain {
 		bk.setName(name);
 		bk.setAuthor(author);
 		bk.setbId(bId);
-		bdi.addBook(bk);
+		bdi.addbook(bk);
 		System.out.println("Updated successfully!");
 	}
 
