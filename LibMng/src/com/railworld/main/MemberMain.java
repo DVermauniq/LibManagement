@@ -1,17 +1,20 @@
 package com.railworld.main;
-// Two major prob - viewAllBalanceRecords - related to balance table 
-// & updateBookStatus - prob with method in daoclass
+
 import java.util.List;
 import java.util.Scanner;
 
-import com.railworld.dao.*;
-import com.railworld.model.*;
+import com.railworld.dao.BooksDaoImp;
+import com.railworld.dao.MemberDaoImp;
+import com.railworld.model.Books;
+import com.railworld.model.Librarian;
+import com.railworld.model.Member;
+import com.railworld.model.issue;
 
 public class MemberMain {
 	
 	private static Scanner sc = new Scanner(System.in);
 	private static MemberDaoImp memberDaoImp;
-	
+	private static BooksDaoImp bdi;	
 	public static void main(String[] args) {
 		
 		
@@ -19,9 +22,8 @@ public class MemberMain {
 			System.out.println("1. View Personal Information");
 			System.out.println("2. View Book Details");
 			System.out.println("3. View personal IssueRecords");
-			System.out.println("4. View personal BalanceRecords");
-			System.out.println("5. Request for Book Issue");
-			System.out.println("6. Exit");
+			System.out.println("4. Request for Book Issue");
+			System.out.println("5. Exit");
 			System.out.println("Enter your choice:");
 			
 			int choice = sc.nextInt();
@@ -38,9 +40,6 @@ public class MemberMain {
 				viewAllIssueRecords();
 				break;				
 			case 4:
-				viewAllBalanceRecords();
-				break;
-			case 5:
 
 				updateBookStatus();
 
@@ -71,7 +70,7 @@ public class MemberMain {
 	private static void viewAllBook(){
 		
 		 List<Books> book;
-			book = BooksDaoImp.getBook();
+			book = bdi.getBook();
 
 		
 		System.out.println("Member List:");
@@ -82,7 +81,7 @@ public class MemberMain {
 	
 	private static void viewAllIssueRecords() {
 		
-		List<issue> issueRecords = BooksDaoImp.getIssue();
+		List<issue> issueRecords = bdi.getIssue();
 		
 		System.out.println("Book Record List");
 		
@@ -90,18 +89,7 @@ public class MemberMain {
 			System.out.println(issueRecords1);
 		}
 	}
-	
-//	private static void viewAllBalanceRecords() {
-//		
-//		List<BalanceRecords> balanceRecords = balanceRecords.getAllBalanceRecords();
-//		
-//		System.out.println("Book Record List");
-//		
-//		for(BalanceRecords balanceRecords1: balanceRecords) {
-//			System.out.println(balanceRecords);
-//		}
-//	}
-	
+
 	private static void updateBookStatus() {
 		
 		System.out.print("Enter issue Id");
@@ -110,16 +98,29 @@ public class MemberMain {
 		String isDate = sc.nextLine();
 		System.out.print("Enter expected submission Date:");
 		String subDate = sc.nextLine();
+		
+		issue iup = new issue();
+		iup.setIsId(isId);
+		iup.setIsDate(isDate);
+		iup.setSubDate(subDate);
+		
 		System.out.print("Enter book Id");
 		int bId = sc.nextInt();
+		Books bup = new Books();
+		bup.setbId(bId);
+		
 		System.out.println("Enter member Id");
 		int mId= sc.nextInt();
+		Member meme= new Member();
+		meme.setmId(mId);
+		
 		System.out.println("Enter librarian Id");
 		int lId= sc.nextInt();
+		Librarian lup = new Librarian();
+		lup.setlId(lId);
 		
 		BooksDaoImp bdi = new BooksDaoImp();
-		issue is1 = new issue();
-		bdi.addIssue(isId, isDate, subDate, bId, mId, lId);
+		bdi.addIssue(iup , bup, lup, meme);
 		System.out.println("Updated successfully!");
 	}
 }

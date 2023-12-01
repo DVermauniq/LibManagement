@@ -9,7 +9,7 @@ import java.util.List;
 import com.railworld.connection.JDBC;
 
 import com.railworld.model.Member;
-public class MemberDaoImp extends AdminDaoImp{
+public class MemberDaoImp{
 	private Connection connection;
 	public MemberDaoImp() {
 		try {
