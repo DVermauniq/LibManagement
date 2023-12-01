@@ -1,5 +1,6 @@
 package com.railworld.main;
-
+// Two major prob - viewAllBalanceRecords - related to balance table 
+// & updateBookStatus - prob with method in daoclass
 import java.util.List;
 import java.util.Scanner;
 
@@ -69,37 +70,37 @@ public class MemberMain {
 	
 	private static void viewAllBook(){
 		
-		 List<Book> book;
-			book = BooksDaoImp.Bookdata();
+		 List<Books> book;
+			book = BooksDaoImp.getBook();
 
 		
 		System.out.println("Member List:");
-		for (Member m : member) {
-			System.out.println(m);
+		for (Books b : book) {
+			System.out.println(b);
 		}
 	}
 	
 	private static void viewAllIssueRecords() {
 		
-		List<IssueRecords> issueRecords = issueRecords.getAllIssueRecords();
+		List<issue> issueRecords = BooksDaoImp.getIssue();
 		
 		System.out.println("Book Record List");
 		
-		for(IssueRecords issueRecords1: issueRecords) {
-			System.out.println(issueRecords);
+		for(issue issueRecords1: issueRecords) {
+			System.out.println(issueRecords1);
 		}
 	}
 	
-	private static void viewAllBalanceRecords() {
-		
-		List<BalanceRecords> balanceRecords = balanceRecords.getAllBalanceRecords();
-		
-		System.out.println("Book Record List");
-		
-		for(BalanceRecords balanceRecords1: balanceRecords) {
-			System.out.println(balanceRecords);
-		}
-	}
+//	private static void viewAllBalanceRecords() {
+//		
+//		List<BalanceRecords> balanceRecords = balanceRecords.getAllBalanceRecords();
+//		
+//		System.out.println("Book Record List");
+//		
+//		for(BalanceRecords balanceRecords1: balanceRecords) {
+//			System.out.println(balanceRecords);
+//		}
+//	}
 	
 	private static void updateBookStatus() {
 		
