@@ -4,20 +4,22 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.railworld.dao.BooksDaoImp;
-
 import com.railworld.dao.MemberDaoImp;
 import com.railworld.model.Books;
 import com.railworld.model.Member;
 import com.railworld.model.issue;
+import com.railworld.service.MemberService;
 
 public class LibrarianMain {
 
 	private static Scanner sc = new Scanner(System.in);
 	
-	private static MemberDaoImp mdi;
+	private static MemberService mdi;
 	private static BooksDaoImp bdi;
 
 	public static void main(String[] args) {
+		MemberDaoImp mem=new MemberDaoImp();
+		 mdi=new MemberService(mem);
 
 		while (true) {
 
