@@ -71,7 +71,7 @@ public class BooksDaoImp {
 	
 	
 	public List<Books> getBook(){
-		String query="SELECT * from Book";
+		String query="SELECT * from books";
 		List<Books> b1 = new ArrayList<>();
 		try(PreparedStatement statement=connection.prepareStatement(query);
 				ResultSet resultSet = statement.executeQuery()) {
@@ -90,7 +90,7 @@ public class BooksDaoImp {
 	}
 	public void addBook(Books book) {
 		try {
-			String query="INSERT INTO Book(bId,Name,Author,Copies) VALUES(?, ?, ?, ?)";
+			String query="INSERT INTO Books(bId,Name,Author,Copies) VALUES(?, ?, ?, ?)";
 			try(PreparedStatement stmt=connection.prepareStatement(query)){
 				
 				stmt.setInt(1, book.getbId());
@@ -110,7 +110,7 @@ public class BooksDaoImp {
 
 
 	public List<issue> getIssue() {
-		String query="SELECT * from Book";
+		String query="SELECT * from issued";
 		List<issue> b1 = new ArrayList<>();
 		try(PreparedStatement statement=connection.prepareStatement(query);
 				ResultSet resultSet = statement.executeQuery()) {
